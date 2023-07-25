@@ -6,7 +6,9 @@ import { Component, h, Event, EventEmitter } from '@stencil/core';
 })
 export class MyComponent {
 
-  @Event({ eventName: "customclick" }) customClick: EventEmitter;
+  // According to https://stenciljs.com/docs/events `bubbles` and `composed` should default to true,
+  // but explicitly setting them here just in case
+  @Event({ eventName: "customclick", bubbles: true, composed: true }) customClick: EventEmitter;
 
   handleCustomClick = () => {
     this.customClick.emit();
